@@ -1,14 +1,12 @@
  <?php
-//echo "<input type='text' name='veruthe' value='veruthe'/>";
-$name=$mysqli->real_escape_string($_REQUEST['username']);
-echo $name;
-$pass = $mysqli->real_escape_string($_REQUEST['password']);
-
 require_once('connect.php');
-$query= "SELECT * FROM 'new' WHERE 'username'=$name";
-$result=$mysqli->query($query);
+$name=$sqlobj->real_escape_string($_REQUEST['username']);
+echo $name;
+$pass = $sqlobj->real_escape_string($_REQUEST['password']);
+$query= "SELECT * FROM 'new' WHERE user='$name' ";
+$result=$sqlobj->query($query);
 $row=$result->fetch_assoc();
-if($row['password'] != $password)
+if($row['pw'] != $pass)
 {
 	echo "authentication failure";
 	die();
